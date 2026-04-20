@@ -2,6 +2,7 @@ process XENA_DOWNLOAD {
     label 'process_low'
 
     conda 'conda-forge::r-ucscxenatools conda-forge::r-tidyverse conda-forge::r-optparse'
+    container '../meta_xena_limma.sif'
 
     output:
     path 'expression.tsv.gz', emit: expression
