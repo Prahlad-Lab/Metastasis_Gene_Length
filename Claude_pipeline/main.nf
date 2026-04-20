@@ -9,8 +9,8 @@
 
 nextflow.enable.dsl = 2
 
-include { XENA_DOWNLOAD         } from './modules/xena_download.nf'
-include { LIMMA_LENGTH_ANALYSIS } from './modules/limma.nf'
+include { XENA_DOWNLOAD         } from './xena_download.nf'
+include { LIMMA_LENGTH_ANALYSIS } from './limma.nf'
 
 workflow {
 

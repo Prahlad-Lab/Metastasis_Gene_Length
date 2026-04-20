@@ -1,0 +1,11 @@
+Nextflow Manager script completed.
+Starting Nextflow Metastasis Pipeline...
+
+ N E X T F L O W   ~  version 25.10.3
+
+Launching `main.nf` [infallible_plateau] DSL2 - revision: 770473c251
+
+ERROR ~ Module path must start with / or ./ prefix -- Offending module: .xena_download.nf
+
+ -- Check script 'main.nf' at line: 12 or see '.nextflow.log' file for more details
+Nextflow pipeline completed.

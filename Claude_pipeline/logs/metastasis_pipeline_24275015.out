@@ -1,0 +1,53 @@
+Nextflow Manager script completed.
+Starting Nextflow Metastasis Pipeline...
+
+ N E X T F L O W   ~  version 25.10.3
+
+Launching `main.nf` [goofy_noether] DSL2 - revision: 506b5e1349
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+Creating env using mamba: bioconda::bioconductor-ucscxenatools=1.4.8 conda-forge::r-tidyverse conda-forge::r-optparse [cache /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/conda/env-83e37472096905883ae22f1added49c2]
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+ERROR ~ Error executing process > 'XENA_DOWNLOAD'
+
+Caused by:
+  Failed to create Conda environment
+    command: mamba create --yes --quiet --prefix /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/conda/env-83e37472096905883ae22f1added49c2 bioconda::bioconductor-ucscxenatools=1.4.8 conda-forge::r-tidyverse conda-forge::r-optparse
+    status : 1
+    message:
+      Could not solve for environment specs
+      The following package could not be installed
+      └─ bioconductor-ucscxenatools 1.4.8*  does not exist (perhaps a typo or a missing channel).
+
+
+
+ -- Check '.nextflow.log' file for details
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+Done. Results: results
+ERROR ~ Error executing process > 'XENA_DOWNLOAD'
+
+Caused by:
+  Failed to create Conda environment
+    command: mamba create --yes --quiet --prefix /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/conda/env-83e37472096905883ae22f1added49c2 bioconda::bioconductor-ucscxenatools=1.4.8 conda-forge::r-tidyverse conda-forge::r-optparse
+    status : 1
+    message:
+      Could not solve for environment specs
+      The following package could not be installed
+      └─ bioconductor-ucscxenatools 1.4.8*  does not exist (perhaps a typo or a missing channel).
+
+
+
+ -- Check '.nextflow.log' file for details
+WARN: Failed to render execution report -- see the log file for details
+WARN: Failed to render execution timeline -- see the log file for details
+
+Nextflow pipeline completed.

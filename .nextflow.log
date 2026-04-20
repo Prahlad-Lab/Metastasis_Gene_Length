@@ -1,0 +1,15 @@
+Apr-20 16:55:02.922 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf -profile conda -work-dir /vscratch/grp-vprahlad/Metastasis_Gene_Length/work -with-report logs/report_STAR_24274896.html -with-trace logs/trace_STAR_24274896.txt -with-timeline logs/timeline_STAR_24274896.html
+Apr-20 16:55:02.995 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.3
+Apr-20 16:55:03.027 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/user/jcruzcorchado/.nextflow/plugins; core-plugins: nf-amazon@3.4.3,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.4,nf-k8s@1.2.2,nf-tower@1.17.4,nf-wave@1.16.1
+Apr-20 16:55:03.068 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Apr-20 16:55:03.070 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Apr-20 16:55:03.073 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Apr-20 16:55:03.090 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+Apr-20 16:55:03.204 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Apr-20 16:55:03.213 [main] DEBUG nextflow.scm.ProviderConfig - Using SCM config path: /user/jcruzcorchado/.nextflow/scm
+Apr-20 16:55:03.223 [main] DEBUG nextflow.cli.Launcher - Operation aborted
+nextflow.exception.AbortOperationException: Cannot find script file: main.nf
+	at nextflow.cli.CmdRun.getScriptFile(CmdRun.groovy:578)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:329)
+	at nextflow.cli.Launcher.run(Launcher.groovy:515)
+	at nextflow.cli.Launcher.main(Launcher.groovy:675)

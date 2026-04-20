@@ -1,7 +1,7 @@
 process XENA_DOWNLOAD {
     label 'process_low'
 
-    conda 'bioconda::bioconductor-ucscxenatools=1.4.8 conda-forge::r-tidyverse conda-forge::r-optparse'
+    conda 'conda-forge::r-ucscxenatools conda-forge::r-tidyverse conda-forge::r-optparse'
 
     output:
     path 'expression.tsv.gz', emit: expression
