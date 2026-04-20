@@ -1,0 +1,65 @@
+Nextflow Manager script completed.
+Starting Nextflow Metastasis Pipeline...
+
+ N E X T F L O W   ~  version 25.10.3
+
+Launching `main.nf` [stoic_salas] DSL2 - revision: 506b5e1349
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+[-        ] XENA_DOWNLOAD         | 0 of 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[20/b45cfb] XENA_DOWNLOAD         | 0 of 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[20/b45cfb] XENA_DOWNLOAD         | 1 of 1 ✔
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[20/b45cfb] XENA_DOWNLOAD         | 1 of 1 ✔
+[-        ] LIMMA_LENGTH_ANALYSIS -
+Creating env using mamba: bioconda::bioconductor-limma=3.58.1 bioconda::bioconductor-edger=4.0.16 bioconda::bioconductor-goseq=1.54.0 conda-forge::r-optparse conda-forge::r-tidyverse conda-forge::r-ggrepel [cache /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/conda/env-644dc11557b0b67ef126afecc2e10de0]
+
+executor >  local (1)
+[20/b45cfb] XENA_DOWNLOAD         | 1 of 1 ✔
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Failed to create Conda environment
+    command: mamba create --yes --quiet --prefix /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/conda/env-644dc11557b0b67ef126afecc2e10de0 bioconda::bioconductor-limma=3.58.1 bioconda::bioconductor-edger=4.0.16 bioconda::bioconductor-goseq=1.54.0 conda-forge::r-optparse conda-forge::r-tidyverse conda-forge::r-ggrepel
+    status : 120
+    message:
+      Preparing transaction: ...working... done
+      Verifying transaction: ...working... done
+
+
+
+ -- Check '.nextflow.log' file for details
+
+executor >  local (1)
+[20/b45cfb] XENA_DOWNLOAD         | 1 of 1 ✔
+[-        ] LIMMA_LENGTH_ANALYSIS -
+Done. Results: results
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Failed to create Conda environment
+    command: mamba create --yes --quiet --prefix /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/conda/env-644dc11557b0b67ef126afecc2e10de0 bioconda::bioconductor-limma=3.58.1 bioconda::bioconductor-edger=4.0.16 bioconda::bioconductor-goseq=1.54.0 conda-forge::r-optparse conda-forge::r-tidyverse conda-forge::r-ggrepel
+    status : 120
+    message:
+      Preparing transaction: ...working... done
+      Verifying transaction: ...working... done
+
+
+
+ -- Check '.nextflow.log' file for details
+WARN: Failed to render execution report -- see the log file for details
+WARN: Failed to render execution timeline -- see the log file for details
+
+Nextflow pipeline completed.
