@@ -1,0 +1,111 @@
+Nextflow Manager script completed.
+Starting Nextflow Metastasis Pipeline...
+
+ N E X T F L O W   ~  version 25.10.3
+
+Launching `main.nf` [drunk_maxwell] DSL2 - revision: 506b5e1349
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[98/1da8ff] XENA_DOWNLOAD         | 0 of 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (2)
+[98/1da8ff] XENA_DOWNLOAD         | 1 of 1 ✔
+[3f/88f3b7] LIMMA_LENGTH_ANALYSIS | 0 of 1
+
+executor >  local (2)
+[98/1da8ff] XENA_DOWNLOAD         | 1 of 1 ✔
+[3f/88f3b7] LIMMA_LENGTH_ANALYSIS | 0 of 1
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Process `LIMMA_LENGTH_ANALYSIS` terminated with an error exit status (1)
+
+
+Command executed:
+
+  limma_length_analysis.R \
+      --expression    expression.tsv.gz \
+      --phenotype     phenotype.tsv \
+      --data_type     log2_norm \
+      --genome        hg38 \
+      --gene_id_type  geneSymbol \
+      --fdr           0.05 \
+      --lfc           1.0 \
+       \
+      --outdir        results
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  INFO:    Environment variable SINGULARITYENV_TMPDIR is set, but APPTAINERENV_TMPDIR is preferred
+  INFO:    Environment variable SINGULARITYENV_NXF_TASK_WORKDIR is set, but APPTAINERENV_NXF_TASK_WORKDIR is preferred
+  INFO:    Environment variable SINGULARITYENV_NXF_DEBUG is set, but APPTAINERENV_NXF_DEBUG is preferred
+  Error: package ‘geneLenDataBase’ required by ‘goseq’ could not be found
+  Execution halted
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/3f/88f3b7692da2e562ab2c1c2e44fb79
+
+Container:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/meta_xena_limma.sif
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+
+ -- Check '.nextflow.log' file for details
+
+executor >  local (2)
+[98/1da8ff] XENA_DOWNLOAD         | 1 of 1 ✔
+[3f/88f3b7] LIMMA_LENGTH_ANALYSIS | 0 of 1 ✘
+Execution cancelled -- Finishing pending tasks before exit
+Done. Results: results
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Process `LIMMA_LENGTH_ANALYSIS` terminated with an error exit status (1)
+
+
+Command executed:
+
+  limma_length_analysis.R \
+      --expression    expression.tsv.gz \
+      --phenotype     phenotype.tsv \
+      --data_type     log2_norm \
+      --genome        hg38 \
+      --gene_id_type  geneSymbol \
+      --fdr           0.05 \
+      --lfc           1.0 \
+       \
+      --outdir        results
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  INFO:    Environment variable SINGULARITYENV_TMPDIR is set, but APPTAINERENV_TMPDIR is preferred
+  INFO:    Environment variable SINGULARITYENV_NXF_TASK_WORKDIR is set, but APPTAINERENV_NXF_TASK_WORKDIR is preferred
+  INFO:    Environment variable SINGULARITYENV_NXF_DEBUG is set, but APPTAINERENV_NXF_DEBUG is preferred
+  Error: package ‘geneLenDataBase’ required by ‘goseq’ could not be found
+  Execution halted
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/3f/88f3b7692da2e562ab2c1c2e44fb79
+
+Container:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/meta_xena_limma.sif
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+
+ -- Check '.nextflow.log' file for details
+
+Nextflow pipeline completed.
