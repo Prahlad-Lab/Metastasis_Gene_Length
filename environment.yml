@@ -2,11 +2,10 @@ name: meta_limma_env
 channels:
   - bioconda
   - conda-forge
-  - defaults
 dependencies:
   - bioconductor-limma=3.58.1
   - bioconductor-edger=4.0.16
-  - bioconductor-goseq=1.54.0
+  - bioconductor-goseq
   - bioconductor-genlendatabase
   - r-optparse
   - r-tidyverse
