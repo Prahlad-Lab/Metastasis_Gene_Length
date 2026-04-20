@@ -24,10 +24,11 @@ From: ubuntu:latest
 
     export PATH=/opt/conda/bin:$PATH
 
-    mamba env update -n base --file /opt/example/environment.yml && mamba clean --all
+    mamba env create --file /opt/example/environment.yml && mamba clean --all
 
 %environment
-    export LANG=en_US.UTF-8 
-    export PATH=/opt/conda/bin:$PATH
-    export LIBRARY_PATH=$CONDA_PREFIX/lib:$LIBRARY_PATH
-    export LD_LIBRARY_PATH=${CONDA_PREFIX}/lib:${LD_LIBRARY_PATH}
+    export LANG=en_US.UTF-8
+    export PATH=/opt/conda/envs/meta_limma_env/bin:/opt/conda/bin:$PATH
+    export CONDA_PREFIX=/opt/conda/envs/meta_limma_env
+    export LIBRARY_PATH=/opt/conda/envs/meta_limma_env/lib:$LIBRARY_PATH
+    export LD_LIBRARY_PATH=/opt/conda/envs/meta_limma_env/lib:$LD_LIBRARY_PATH
