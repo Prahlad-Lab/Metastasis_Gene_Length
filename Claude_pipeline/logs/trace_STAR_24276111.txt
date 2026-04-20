@@ -1,0 +1,2 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	42/818caf	263247	XENA_DOWNLOAD	FAILED	0	2026-04-20 17:42:52.929	6.5s	2.6s	65.2%	86.7 MB	774.4 MB	14.4 MB	1.6 KB

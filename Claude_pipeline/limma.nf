@@ -9,7 +9,7 @@ process LIMMA_LENGTH_ANALYSIS {
 
     output:
     path 'results/*.tsv', emit: tables
-    path 'results/*.png', emit: plots
+    path 'results/*.svg', emit: plots
     path 'results/*.rds', emit: rds
 
     script:

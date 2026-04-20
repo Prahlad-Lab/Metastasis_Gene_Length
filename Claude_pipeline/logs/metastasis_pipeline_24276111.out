@@ -1,0 +1,97 @@
+Nextflow Manager script completed.
+Starting Nextflow Metastasis Pipeline...
+
+ N E X T F L O W   ~  version 25.10.3
+
+Launching `main.nf` [curious_mercator] DSL2 - revision: 506b5e1349
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[42/818caf] XENA_DOWNLOAD         | 0 of 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[42/818caf] XENA_DOWNLOAD         | 0 of 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+ERROR ~ Error executing process > 'XENA_DOWNLOAD'
+
+Caused by:
+  Missing output file(s) `expression.tsv.gz` expected by process `XENA_DOWNLOAD`
+
+
+Command executed:
+
+  xena_download.R \
+      --host       tcgaHub \
+      --dataset    TCGA.SKCM.sampleMap/HiSeqV2 \
+      --phenotype  TCGA.SKCM.sampleMap/SKCM_clinicalMatrix \
+      --primary_codes    01 \
+      --metastasis_codes 06,07 \
+       \
+      --outdir . 2>&1 | tee xena_download_log.txt
+
+Command exit status:
+  0
+
+Command output:
+  >>> Looking up Xena dataset
+      host:      tcgaHub
+      dataset:   TCGA.SKCM.sampleMap/HiSeqV2
+      phenotype: TCGA.SKCM.sampleMap/SKCM_clinicalMatrix
+  >>> Downloading expression matrix
+  Error in if (nrow(expr_query@datasets) == 0) { : 
+    argument is of length zero
+  Execution halted
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/42/818caf08849f2c2ff59b576f3a1c39
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+
+ -- Check '.nextflow.log' file for details
+
+executor >  local (1)
+[42/818caf] XENA_DOWNLOAD         | 0 of 1 ✘
+[-        ] LIMMA_LENGTH_ANALYSIS -
+Execution cancelled -- Finishing pending tasks before exit
+Done. Results: results
+ERROR ~ Error executing process > 'XENA_DOWNLOAD'
+
+Caused by:
+  Missing output file(s) `expression.tsv.gz` expected by process `XENA_DOWNLOAD`
+
+
+Command executed:
+
+  xena_download.R \
+      --host       tcgaHub \
+      --dataset    TCGA.SKCM.sampleMap/HiSeqV2 \
+      --phenotype  TCGA.SKCM.sampleMap/SKCM_clinicalMatrix \
+      --primary_codes    01 \
+      --metastasis_codes 06,07 \
+       \
+      --outdir . 2>&1 | tee xena_download_log.txt
+
+Command exit status:
+  0
+
+Command output:
+  >>> Looking up Xena dataset
+      host:      tcgaHub
+      dataset:   TCGA.SKCM.sampleMap/HiSeqV2
+      phenotype: TCGA.SKCM.sampleMap/SKCM_clinicalMatrix
+  >>> Downloading expression matrix
+  Error in if (nrow(expr_query@datasets) == 0) { : 
+    argument is of length zero
+  Execution halted
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/42/818caf08849f2c2ff59b576f3a1c39
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+
+ -- Check '.nextflow.log' file for details
+
+Nextflow pipeline completed.
