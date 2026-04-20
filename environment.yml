@@ -7,6 +7,7 @@ dependencies:
   - bioconductor-limma=3.58.1
   - bioconductor-edger=4.0.16
   - bioconductor-goseq=1.54.0
+  - bioconductor-genlendatabase
   - r-optparse
   - r-tidyverse
   - r-ggrepel
