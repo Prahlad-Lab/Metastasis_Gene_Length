@@ -60,7 +60,7 @@ message(">>> Downloading expression matrix")
 expr_query <- XenaGenerate(subset = XenaHostNames == opt$host) |>
     XenaFilter(filterDatasets = paste0("^", opt$dataset, "$"))
 
-if (nrow(expr_query@datasets) == 0) {
+if (NROW(expr_query@datasets) == 0) {
     stop("Dataset not found in Xena registry: ", opt$dataset)
 }
 
@@ -83,7 +83,7 @@ message(">>> Downloading phenotype")
 pheno_query <- XenaGenerate(subset = XenaHostNames == opt$host) |>
     XenaFilter(filterDatasets = paste0("^", opt$phenotype, "$"))
 
-if (nrow(pheno_query@datasets) == 0) {
+if (NROW(pheno_query@datasets) == 0) {
     stop("Phenotype dataset not found: ", opt$phenotype)
 }
 
