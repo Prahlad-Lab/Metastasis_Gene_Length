@@ -36,7 +36,7 @@ echo "Starting Nextflow Metastasis Pipeline..."
 
 # Tell Nextflow to run main.nf, use Slurm to submit sub-tasks, and resume if interrupted
 nextflow run main.nf -profile conda \
-	-w"$WORK_DIR" \
+	-w "$WORK_DIR" \
 	-with-report logs/report_STAR_${SLURM_JOB_ID}.html \
 	-with-trace logs/trace_STAR_${SLURM_JOB_ID}.txt \
 	-with-timeline logs/timeline_STAR_${SLURM_JOB_ID}.html 
