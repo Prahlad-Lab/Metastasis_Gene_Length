@@ -110,8 +110,8 @@ design <- if (paired) model.matrix(~ patient + tissue_type, data = pheno)
           else        model.matrix(~ tissue_type,           data = pheno)
 
 if (use_voom) {
-    png(file.path(opt$outdir, "voom_mean_variance.png"),
-        width = 800, height = 600, res = 120)
+    svg(file.path(opt$outdir, "voom_mean_variance.svg"),
+        width = 800 / 96, height = 600 / 96)
     v <- voomWithQualityWeights(dge, design, plot = TRUE)
     dev.off()
     fit <- lmFit(v, design)
@@ -189,7 +189,7 @@ write_tsv(decile_summary, file.path(opt$outdir, "length_decile_summary.tsv"))
 
 theme_set(theme_bw(base_size = 11))
 
-ggsave(file.path(opt$outdir, "length_vs_logfc.png"),
+ggsave(file.path(opt$outdir, "length_vs_logfc.svg"),
     ggplot(res_len, aes(log10_len, logFC)) +
         geom_hex(bins = 60) +
         geom_hline(yintercept = 0, linetype = 2) +
@@ -200,9 +200,9 @@ ggsave(file.path(opt$outdir, "length_vs_logfc.png"),
              title = "Length vs fold change",
              subtitle = sprintf("Spearman rho = %.3f, p = %.2g",
                                 sp$estimate, sp$p.value)),
-    width = 7, height = 5, dpi = 150)
+    width = 7, height = 5)
 
-ggsave(file.path(opt$outdir, "length_decile_de_pct.png"),
+ggsave(file.path(opt$outdir, "length_decile_de_pct.svg"),
     decile_summary |>
         select(decile, pct_up, pct_down) |>
         pivot_longer(c(pct_up, pct_down), names_to = "dir", values_to = "pct") |>
@@ -214,25 +214,25 @@ ggsave(file.path(opt$outdir, "length_decile_de_pct.png"),
         labs(x = "Gene length decile (1=shortest, 10=longest)",
              y = sprintf("%% DE (FDR<%.2f, |logFC|>%.1f)", opt$fdr, opt$lfc),
              fill = NULL, title = "DE enrichment by length decile"),
-    width = 8, height = 4.5, dpi = 150)
+    width = 8, height = 4.5)
 
-ggsave(file.path(opt$outdir, "length_density_by_direction.png"),
+ggsave(file.path(opt$outdir, "length_density_by_direction.svg"),
     ggplot(res_len, aes(log10_len, colour = direction, fill = direction)) +
         geom_density(alpha = 0.15) +
         scale_colour_manual(values = c(up = "#d73027", down = "#4575b4", ns = "grey50")) +
         scale_fill_manual  (values = c(up = "#d73027", down = "#4575b4", ns = "grey50")) +
         labs(x = "log10 gene length (bp)", y = "density",
              title = "Gene length distribution by DE direction"),
-    width = 7, height = 4, dpi = 150)
+    width = 7, height = 4)
 
-ggsave(file.path(opt$outdir, "volcano.png"),
+ggsave(file.path(opt$outdir, "volcano.svg"),
     ggplot(res_len, aes(logFC, -log10(adj.P.Val), colour = direction)) +
         geom_point(size = 0.6, alpha = 0.5) +
         geom_vline(xintercept = c(-opt$lfc, opt$lfc), linetype = 2) +
         geom_hline(yintercept = -log10(opt$fdr),       linetype = 2) +
         scale_colour_manual(values = c(up = "#d73027", down = "#4575b4", ns = "grey70")) +
         labs(title = "Volcano plot", x = "log2 FC", y = "-log10 adj.P"),
-    width = 7, height = 5, dpi = 150)
+    width = 7, height = 5)
 
 # =============================================================================
 # 6. goseq: length-bias-corrected GO/KEGG
@@ -244,8 +244,8 @@ gene_vec[is.na(gene_vec)] <- 0
 bias <- setNames(res$length_bp, res$gene_id)
 bias[is.na(bias)] <- median(bias, na.rm = TRUE)
 
-png(file.path(opt$outdir, "goseq_pwf_fit.png"),
-    width = 800, height = 600, res = 120)
+svg(file.path(opt$outdir, "goseq_pwf_fit.svg"),
+    width = 800 / 96, height = 600 / 96)
 pwf <- nullp(gene_vec, bias.data = bias, plot.fit = TRUE)
 dev.off()
 
@@ -271,14 +271,14 @@ if (!is.null(go_res)) {
     )
     write_tsv(merged, file.path(opt$outdir, "goseq_vs_hypergeometric.tsv"))
 
-    ggsave(file.path(opt$outdir, "goseq_vs_hypergeometric.png"),
+    ggsave(file.path(opt$outdir, "goseq_vs_hypergeometric.svg"),
         ggplot(merged, aes(-log10(hyper_padj), -log10(goseq_padj))) +
             geom_point(alpha = 0.5) +
             geom_abline(slope = 1, intercept = 0, linetype = 2, colour = "red") +
             labs(x = "-log10 adj.P (hypergeometric, biased)",
                  y = "-log10 adj.P (goseq, length-corrected)",
                  title = "Length-corrected vs uncorrected GO-BP"),
-        width = 6.5, height = 6, dpi = 150)
+        width = 6.5, height = 6)
 }
 
 message(">>> Done.")
