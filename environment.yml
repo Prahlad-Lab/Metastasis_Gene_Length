@@ -3,7 +3,6 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - nextflow
   - bioconductor-limma=3.58.1
   - bioconductor-edger=4.0.16
   - bioconductor-goseq
