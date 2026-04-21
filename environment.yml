@@ -1,12 +1,13 @@
-name: meta_limma_env
+name: limma_xena_env
 channels:
   - bioconda
   - conda-forge
 dependencies:
+  - nextflow
   - bioconductor-limma=3.58.1
   - bioconductor-edger=4.0.16
   - bioconductor-goseq
-  - bioconductor-genlendatabase
+  - bioconductor-genelendatabase
   - r-optparse
   - r-tidyverse
   - r-ggrepel
