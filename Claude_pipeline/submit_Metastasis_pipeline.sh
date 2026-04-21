@@ -45,6 +45,6 @@ nextflow run main.nf -profile mixed \
 	--limma_env_path "$LIMMA_ENV_PATH" \
 	-with-report logs/report_STAR_${SLURM_JOB_ID}.html \
 	-with-trace logs/trace_STAR_${SLURM_JOB_ID}.txt \
-	-with-timeline logs/timeline_STAR_${SLURM_JOB_ID}.html 
+	-with-timeline logs/timeline_STAR_${SLURM_JOB_ID}.html -resume 
 
 echo "Nextflow pipeline completed."
