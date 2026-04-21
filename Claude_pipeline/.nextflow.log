@@ -1,80 +1,80 @@
-Apr-21 21:30:20.868 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf -profile mixed -w /vscratch/grp-vprahlad/Metastasis_Gene_Length/work --limma_env_path /projects/rpci/vprahlad/jcruzcorchado/conda/envs/test_limma_env -with-report logs/report_STAR_24289482.html -with-trace logs/trace_STAR_24289482.txt -with-timeline logs/timeline_STAR_24289482.html -resume
-Apr-21 21:30:21.142 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.4
-Apr-21 21:30:21.256 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/user/jcruzcorchado/.nextflow/plugins; core-plugins: nf-amazon@3.4.4,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.5,nf-k8s@1.2.2,nf-tower@1.17.5,nf-wave@1.16.1
-Apr-21 21:30:21.377 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Apr-21 21:30:21.379 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Apr-21 21:30:21.384 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
-Apr-21 21:30:21.450 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
-Apr-21 21:30:22.532 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Apr-21 21:30:22.614 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /vscratch/grp-vprahlad/Metastasis_Gene_Length/Claude_pipeline/nextflow.config
-Apr-21 21:30:22.622 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /vscratch/grp-vprahlad/Metastasis_Gene_Length/Claude_pipeline/nextflow.config
-Apr-21 21:30:22.676 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `mixed`
-Apr-21 21:30:23.588 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [standard, slurm, conda, singularity, mixed]
-Apr-21 21:30:23.640 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Apr-21 21:30:23.641 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
-Apr-21 21:30:23.696 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /user/jcruzcorchado/.nextflow/secrets/store.json
-Apr-21 21:30:23.702 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@66cd621b] - activable => nextflow.secret.LocalSecretsProvider@66cd621b
-Apr-21 21:30:23.708 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
-Apr-21 21:30:23.752 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [romantic_lavoisier] DSL2 - revision: 506b5e1349
-Apr-21 21:30:23.888 [main] DEBUG nextflow.Session - Session UUID: 110a7fd8-1f10-4d4f-961c-93721c048b31
-Apr-21 21:30:23.888 [main] DEBUG nextflow.Session - Run name: romantic_lavoisier
-Apr-21 21:30:23.889 [main] DEBUG nextflow.Session - Executor pool size: 4
-Apr-21 21:30:23.905 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
-Apr-21 21:30:23.912 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
-Apr-21 21:30:24.036 [main] DEBUG nextflow.cli.CmdRun - 
+Apr-21 21:54:34.415 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf -profile mixed -w /vscratch/grp-vprahlad/Metastasis_Gene_Length/work --limma_env_path /projects/rpci/vprahlad/jcruzcorchado/conda/envs/test_limma_env -with-report logs/report_STAR_24289668.html -with-trace logs/trace_STAR_24289668.txt -with-timeline logs/timeline_STAR_24289668.html -resume
+Apr-21 21:54:34.821 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.4
+Apr-21 21:54:35.232 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/user/jcruzcorchado/.nextflow/plugins; core-plugins: nf-amazon@3.4.4,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.5,nf-k8s@1.2.2,nf-tower@1.17.5,nf-wave@1.16.1
+Apr-21 21:54:35.637 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Apr-21 21:54:35.642 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Apr-21 21:54:35.655 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Apr-21 21:54:35.748 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+Apr-21 21:54:37.875 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Apr-21 21:54:37.990 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /vscratch/grp-vprahlad/Metastasis_Gene_Length/Claude_pipeline/nextflow.config
+Apr-21 21:54:37.999 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /vscratch/grp-vprahlad/Metastasis_Gene_Length/Claude_pipeline/nextflow.config
+Apr-21 21:54:38.076 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `mixed`
+Apr-21 21:54:40.521 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [standard, slurm, conda, singularity, mixed]
+Apr-21 21:54:40.832 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Apr-21 21:54:40.833 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Apr-21 21:54:40.913 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /user/jcruzcorchado/.nextflow/secrets/store.json
+Apr-21 21:54:40.926 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@66cd621b] - activable => nextflow.secret.LocalSecretsProvider@66cd621b
+Apr-21 21:54:40.935 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Apr-21 21:54:41.003 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [drunk_planck] DSL2 - revision: 506b5e1349
+Apr-21 21:54:41.239 [main] DEBUG nextflow.Session - Session UUID: 110a7fd8-1f10-4d4f-961c-93721c048b31
+Apr-21 21:54:41.240 [main] DEBUG nextflow.Session - Run name: drunk_planck
+Apr-21 21:54:41.241 [main] DEBUG nextflow.Session - Executor pool size: 4
+Apr-21 21:54:41.267 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Apr-21 21:54:41.281 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Apr-21 21:54:41.457 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 25.10.4 build 11173
   Created: 10-02-2026 15:17 UTC 
   System: Linux 6.8.0-106-generic
   Runtime: Groovy 4.0.28 on OpenJDK 64-Bit Server VM 23.0.2-internal-adhoc.conda.src
   Encoding: UTF-8 (ANSI_X3.4-1968)
-  Process: 4101140@cpn-c04-15.core.ccr.buffalo.edu [10.18.84.14]
-  CPUs: 4 - Mem: 503.2 GB (45.4 GB) - Swap: 0 (0)
-Apr-21 21:30:24.131 [main] DEBUG nextflow.Session - Work-dir: /vscratch/grp-vprahlad/Metastasis_Gene_Length/work [nfs]
-Apr-21 21:30:24.218 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Apr-21 21:30:24.238 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
-Apr-21 21:30:24.244 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
-Apr-21 21:30:24.313 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-Apr-21 21:30:24.333 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 5; maxThreads: 1000
-Apr-21 21:30:24.704 [main] DEBUG nextflow.Session - Session start
-Apr-21 21:30:24.723 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: logs/trace_STAR_24289482.txt
-Apr-21 21:30:24.932 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Apr-21 21:30:25.264 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:XENA_DOWNLOAD` matches process XENA_DOWNLOAD
-Apr-21 21:30:25.270 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Apr-21 21:30:25.270 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Apr-21 21:30:25.282 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Apr-21 21:30:25.297 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=4; memory=503.2 GB; capacity=4; pollInterval=100ms; dumpInterval=5m
-Apr-21 21:30:25.302 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
-Apr-21 21:30:25.329 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'XENA_DOWNLOAD': maxForks=0; fair=false; array=0
-Apr-21 21:30:25.384 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:LIMMA_LENGTH_ANALYSIS` matches process LIMMA_LENGTH_ANALYSIS
-Apr-21 21:30:25.385 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Apr-21 21:30:25.385 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Apr-21 21:30:25.386 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'LIMMA_LENGTH_ANALYSIS': maxForks=0; fair=false; array=0
-Apr-21 21:30:25.391 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: LIMMA_LENGTH_ANALYSIS, XENA_DOWNLOAD
-Apr-21 21:30:25.394 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
-Apr-21 21:30:25.395 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > XENA_DOWNLOAD
-Apr-21 21:30:25.395 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LIMMA_LENGTH_ANALYSIS
-Apr-21 21:30:25.399 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Process: 1187865@cpn-c01-25.core.ccr.buffalo.edu [10.18.81.210]
+  CPUs: 4 - Mem: 503.2 GB (4.3 GB) - Swap: 0 (0)
+Apr-21 21:54:41.594 [main] DEBUG nextflow.Session - Work-dir: /vscratch/grp-vprahlad/Metastasis_Gene_Length/work [nfs]
+Apr-21 21:54:41.703 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Apr-21 21:54:41.731 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Apr-21 21:54:41.741 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+Apr-21 21:54:41.899 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Apr-21 21:54:41.933 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 5; maxThreads: 1000
+Apr-21 21:54:42.715 [main] DEBUG nextflow.Session - Session start
+Apr-21 21:54:42.750 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: logs/trace_STAR_24289668.txt
+Apr-21 21:54:43.058 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Apr-21 21:54:43.632 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:XENA_DOWNLOAD` matches process XENA_DOWNLOAD
+Apr-21 21:54:43.643 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Apr-21 21:54:43.644 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-21 21:54:43.669 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Apr-21 21:54:43.699 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=4; memory=503.2 GB; capacity=4; pollInterval=100ms; dumpInterval=5m
+Apr-21 21:54:43.709 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Apr-21 21:54:43.761 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'XENA_DOWNLOAD': maxForks=0; fair=false; array=0
+Apr-21 21:54:43.882 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:LIMMA_LENGTH_ANALYSIS` matches process LIMMA_LENGTH_ANALYSIS
+Apr-21 21:54:43.885 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Apr-21 21:54:43.886 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-21 21:54:43.889 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'LIMMA_LENGTH_ANALYSIS': maxForks=0; fair=false; array=0
+Apr-21 21:54:43.901 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: LIMMA_LENGTH_ANALYSIS, XENA_DOWNLOAD
+Apr-21 21:54:43.908 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
+Apr-21 21:54:43.910 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > XENA_DOWNLOAD
+Apr-21 21:54:43.911 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > LIMMA_LENGTH_ANALYSIS
+Apr-21 21:54:43.915 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
   Script_67f5763f39e99573: /vscratch/grp-vprahlad/Metastasis_Gene_Length/Claude_pipeline/main.nf
   Script_517820f9b8d4f507: /vscratch/grp-vprahlad/Metastasis_Gene_Length/Claude_pipeline/xena_download.nf
   Script_fa1e415eee8bdece: /vscratch/grp-vprahlad/Metastasis_Gene_Length/Claude_pipeline/limma.nf
-Apr-21 21:30:25.399 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
-Apr-21 21:30:25.399 [main] DEBUG nextflow.Session - Session await
-Apr-21 21:30:25.692 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [4b/243375] Cached process > XENA_DOWNLOAD
-Apr-21 21:30:25.739 [Actor Thread 5] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
-Apr-21 21:30:25.798 [Actor Thread 3] DEBUG nextflow.conda.CondaCache - mamba found local env for environment=/projects/rpci/vprahlad/jcruzcorchado/conda/envs/test_limma_env; path=/projects/rpci/vprahlad/jcruzcorchado/conda/envs/test_limma_env
-Apr-21 21:30:25.866 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-21 21:30:25.871 [Task submitter] INFO  nextflow.Session - [89/7482b7] Submitted process > LIMMA_LENGTH_ANALYSIS
-Apr-21 21:35:25.454 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 2; name: LIMMA_LENGTH_ANALYSIS; status: RUNNING; exit: -; error: -; workDir: /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/89/7482b7d65156aad7ae014aed1618a5]
-Apr-21 21:35:55.053 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: LIMMA_LENGTH_ANALYSIS; status: COMPLETED; exit: 1; error: -; workDir: /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/89/7482b7d65156aad7ae014aed1618a5]
-Apr-21 21:35:55.056 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
-Apr-21 21:35:55.080 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
-  task: name=LIMMA_LENGTH_ANALYSIS; work-dir=/vscratch/grp-vprahlad/Metastasis_Gene_Length/work/89/7482b7d65156aad7ae014aed1618a5
-  error [nextflow.exception.ProcessFailedException]: Process `LIMMA_LENGTH_ANALYSIS` terminated with an error exit status (1)
-Apr-21 21:35:55.114 [TaskFinalizer-1] ERROR nextflow.processor.TaskProcessor - Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+Apr-21 21:54:43.915 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Apr-21 21:54:43.915 [main] DEBUG nextflow.Session - Session await
+Apr-21 21:54:44.740 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [4b/243375] Cached process > XENA_DOWNLOAD
+Apr-21 21:54:44.826 [Actor Thread 5] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Apr-21 21:54:44.938 [Actor Thread 3] DEBUG nextflow.conda.CondaCache - mamba found local env for environment=/projects/rpci/vprahlad/jcruzcorchado/conda/envs/test_limma_env; path=/projects/rpci/vprahlad/jcruzcorchado/conda/envs/test_limma_env
+Apr-21 21:54:45.074 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-21 21:54:45.083 [Task submitter] INFO  nextflow.Session - [6a/626a61] Submitted process > LIMMA_LENGTH_ANALYSIS
+Apr-21 21:59:43.919 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: LIMMA_LENGTH_ANALYSIS; status: RUNNING; exit: -; error: -; workDir: /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6a/626a617e67afae54b7739110d6a8f0]
+Apr-21 22:01:41.220 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: LIMMA_LENGTH_ANALYSIS; status: COMPLETED; exit: 0; error: -; workDir: /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6a/626a617e67afae54b7739110d6a8f0]
+Apr-21 22:01:41.224 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Apr-21 22:01:41.274 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=LIMMA_LENGTH_ANALYSIS; work-dir=/vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6a/626a617e67afae54b7739110d6a8f0
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `results/*.svg` expected by process `LIMMA_LENGTH_ANALYSIS`
+Apr-21 22:01:41.348 [TaskFinalizer-1] ERROR nextflow.processor.TaskProcessor - Error executing process > 'LIMMA_LENGTH_ANALYSIS'
 
 Caused by:
-  Process `LIMMA_LENGTH_ANALYSIS` terminated with an error exit status (1)
+  Missing output file(s) `results/*.svg` expected by process `LIMMA_LENGTH_ANALYSIS`
 
 
 Command executed:
@@ -91,14 +91,12 @@ Command executed:
       --outdir        results
 
 Command exit status:
-  1
+  0
 
 Command output:
   (empty)
 
 Command error:
-  The following objects are masked from 'package:base':
-  
       Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
       as.data.frame, basename, cbind, colnames, dirname, do.call,
       duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
@@ -140,29 +138,31 @@ Command error:
   
   Loading required package: GenomeInfoDb
   Trying to download from UCSC. This might take a couple of minutes. 
-  Error in value[[3L]](cond) : 
-    Length information for genome hg38 and gene ID geneSymbol is not available. You will have to specify bias.data manually.
-  Calls: getlength ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
-  In addition: Warning message:
-  In grep(txdbPattern, installedPackages) :
-    argument 'pattern' has length > 1 and only the first element will be used
-  Execution halted
+      goseq::getlength failed: Length information for genome hg38 and gene ID geneSymbol is not available. You will have to specify bias.data manually.
+  >>> Falling back to biomaRt to retrieve gene lengths
+      biomaRt fallback failed: The query to the BioMart webservice returned an invalid result.
+  The number of columns in the result table does not equal the number of attributes in the query.
+  Please report this on the support site at http://support.bioconductor.org
+      Gene lengths unavailable; length-stratified analyses will be skipped.
+  >>> Skipping length-stratified analysis: insufficient gene length data
+  >>> Skipping goseq enrichment: insufficient gene length data
+  >>> Done.
 
 Work dir:
-  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/89/7482b7d65156aad7ae014aed1618a5
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6a/626a617e67afae54b7739110d6a8f0
 
-Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
-Apr-21 21:35:55.121 [main] DEBUG nextflow.Session - Session await > all processes finished
-Apr-21 21:35:55.128 [TaskFinalizer-1] INFO  nextflow.Session - Execution cancelled -- Finishing pending tasks before exit
-Apr-21 21:35:55.152 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
-Apr-21 21:35:55.152 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Apr-21 21:35:55.155 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
-Apr-21 21:35:55.155 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
-Apr-21 21:35:55.164 [main] INFO  nextflow.Nextflow - Done. Results: results
-Apr-21 21:35:55.170 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=1; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=21m 57s; cachedDuration=34.1s;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=4; peakMemory=32 GB; ]
-Apr-21 21:35:55.352 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
-Apr-21 21:35:56.291 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
-Apr-21 21:35:56.379 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
-Apr-21 21:35:56.394 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
-Apr-21 21:35:56.420 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
-Apr-21 21:35:56.421 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+Apr-21 22:01:41.355 [main] DEBUG nextflow.Session - Session await > all processes finished
+Apr-21 22:01:41.364 [TaskFinalizer-1] INFO  nextflow.Session - Execution cancelled -- Finishing pending tasks before exit
+Apr-21 22:01:41.392 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Apr-21 22:01:41.392 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Apr-21 22:01:41.395 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Apr-21 22:01:41.395 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Apr-21 22:01:41.414 [main] INFO  nextflow.Nextflow - Done. Results: results
+Apr-21 22:01:41.426 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=1; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=26m 28s; cachedDuration=34.1s;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=4; peakMemory=32 GB; ]
+Apr-21 22:01:41.583 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Apr-21 22:01:42.541 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Apr-21 22:01:42.867 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Apr-21 22:01:42.890 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Apr-21 22:01:42.929 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Apr-21 22:01:42.930 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -1,0 +1,3 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	4b/243375	639648	XENA_DOWNLOAD	CACHED	0	2026-04-21 21:21:47.236	18.5s	17s	97.1%	372.5 MB	1.6 GB	40.6 MB	114.4 MB
+2	6a/626a61	1187986	LIMMA_LENGTH_ANALYSIS	FAILED	0	2026-04-21 21:54:45.082	6m 56s	6m 37s	10.4%	1.3 GB	2.5 GB	79.7 MB	63.7 MB

@@ -1,0 +1,197 @@
+Nextflow Manager script completed.
+Starting Nextflow Metastasis Pipeline...
+
+ N E X T F L O W   ~  version 25.10.4
+
+Launching `main.nf` [drunk_planck] DSL2 - revision: 506b5e1349
+
+[-        ] XENA_DOWNLOAD         -
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+[4b/243375] XENA_DOWNLOAD         | 1 of 1, cached: 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+[4b/243375] XENA_DOWNLOAD         | 1 of 1, cached: 1 ✔
+[-        ] LIMMA_LENGTH_ANALYSIS | 0 of 1
+
+executor >  local (1)
+[4b/243375] XENA_DOWNLOAD         | 1 of 1, cached: 1 ✔
+[6a/626a61] LIMMA_LENGTH_ANALYSIS | 0 of 1
+
+executor >  local (1)
+[4b/243375] XENA_DOWNLOAD         | 1 of 1, cached: 1 ✔
+[6a/626a61] LIMMA_LENGTH_ANALYSIS | 0 of 1
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Missing output file(s) `results/*.svg` expected by process `LIMMA_LENGTH_ANALYSIS`
+
+
+Command executed:
+
+  limma_length_analysis.R \
+      --expression    expression.tsv.gz \
+      --phenotype     phenotype.tsv \
+      --data_type     log2_norm \
+      --genome        hg38 \
+      --gene_id_type  geneSymbol \
+      --fdr           0.05 \
+      --lfc           1.0 \
+       \
+      --outdir        results
+
+Command exit status:
+  0
+
+Command output:
+  (empty)
+
+Command error:
+      Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+      as.data.frame, basename, cbind, colnames, dirname, do.call,
+      duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+      lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+      pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+      tapply, union, unique, unsplit, which.max, which.min
+  
+  Loading required package: S4Vectors
+  
+  Attaching package: 'S4Vectors'
+  
+  The following object is masked from 'package:tidyr':
+  
+      expand
+  
+  The following objects are masked from 'package:dplyr':
+  
+      first, rename
+  
+  The following object is masked from 'package:geneLenDataBase':
+  
+      unfactor
+  
+  The following object is masked from 'package:utils':
+  
+      findMatches
+  
+  The following objects are masked from 'package:base':
+  
+      I, expand.grid, unname
+  
+  Loading required package: IRanges
+  
+  Attaching package: 'IRanges'
+  
+  The following objects are masked from 'package:dplyr':
+  
+      collapse, desc, slice
+  
+  Loading required package: GenomeInfoDb
+  Trying to download from UCSC. This might take a couple of minutes. 
+      goseq::getlength failed: Length information for genome hg38 and gene ID geneSymbol is not available. You will have to specify bias.data manually.
+  >>> Falling back to biomaRt to retrieve gene lengths
+      biomaRt fallback failed: The query to the BioMart webservice returned an invalid result.
+  The number of columns in the result table does not equal the number of attributes in the query.
+  Please report this on the support site at http://support.bioconductor.org
+      Gene lengths unavailable; length-stratified analyses will be skipped.
+  >>> Skipping length-stratified analysis: insufficient gene length data
+  >>> Skipping goseq enrichment: insufficient gene length data
+  >>> Done.
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6a/626a617e67afae54b7739110d6a8f0
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '.nextflow.log' file for details
+
+executor >  local (1)
+[4b/243375] XENA_DOWNLOAD         | 1 of 1, cached: 1 ✔
+[6a/626a61] LIMMA_LENGTH_ANALYSIS | 0 of 1 ✘
+Execution cancelled -- Finishing pending tasks before exit
+Done. Results: results
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Missing output file(s) `results/*.svg` expected by process `LIMMA_LENGTH_ANALYSIS`
+
+
+Command executed:
+
+  limma_length_analysis.R \
+      --expression    expression.tsv.gz \
+      --phenotype     phenotype.tsv \
+      --data_type     log2_norm \
+      --genome        hg38 \
+      --gene_id_type  geneSymbol \
+      --fdr           0.05 \
+      --lfc           1.0 \
+       \
+      --outdir        results
+
+Command exit status:
+  0
+
+Command output:
+  (empty)
+
+Command error:
+      Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+      as.data.frame, basename, cbind, colnames, dirname, do.call,
+      duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+      lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+      pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+      tapply, union, unique, unsplit, which.max, which.min
+  
+  Loading required package: S4Vectors
+  
+  Attaching package: 'S4Vectors'
+  
+  The following object is masked from 'package:tidyr':
+  
+      expand
+  
+  The following objects are masked from 'package:dplyr':
+  
+      first, rename
+  
+  The following object is masked from 'package:geneLenDataBase':
+  
+      unfactor
+  
+  The following object is masked from 'package:utils':
+  
+      findMatches
+  
+  The following objects are masked from 'package:base':
+  
+      I, expand.grid, unname
+  
+  Loading required package: IRanges
+  
+  Attaching package: 'IRanges'
+  
+  The following objects are masked from 'package:dplyr':
+  
+      collapse, desc, slice
+  
+  Loading required package: GenomeInfoDb
+  Trying to download from UCSC. This might take a couple of minutes. 
+      goseq::getlength failed: Length information for genome hg38 and gene ID geneSymbol is not available. You will have to specify bias.data manually.
+  >>> Falling back to biomaRt to retrieve gene lengths
+      biomaRt fallback failed: The query to the BioMart webservice returned an invalid result.
+  The number of columns in the result table does not equal the number of attributes in the query.
+  Please report this on the support site at http://support.bioconductor.org
+      Gene lengths unavailable; length-stratified analyses will be skipped.
+  >>> Skipping length-stratified analysis: insufficient gene length data
+  >>> Skipping goseq enrichment: insufficient gene length data
+  >>> Done.
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6a/626a617e67afae54b7739110d6a8f0
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '.nextflow.log' file for details
+
+Nextflow pipeline completed.
