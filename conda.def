@@ -28,7 +28,7 @@ From: ubuntu:latest
 
 %environment
     export LANG=en_US.UTF-8
-    export PATH=/opt/conda/envs/meta_limma_env/bin:/opt/conda/bin:$PATH
-    export CONDA_PREFIX=/opt/conda/envs/meta_limma_env
-    export LIBRARY_PATH=/opt/conda/envs/meta_limma_env/lib:$LIBRARY_PATH
-    export LD_LIBRARY_PATH=/opt/conda/envs/meta_limma_env/lib:$LD_LIBRARY_PATH
+    export PATH=/opt/conda/envs/limma_env/bin:/opt/conda/bin:$PATH
+    export CONDA_PREFIX=/opt/conda/envs/limma_env
+    export LIBRARY_PATH=/opt/conda/envs/limma_env/lib:$LIBRARY_PATH
+    export LD_LIBRARY_PATH=/opt/conda/envs/limma_env/lib:$LD_LIBRARY_PATH

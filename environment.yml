@@ -1,4 +1,4 @@
-name: limma_xena_env
+name: limma_env
 channels:
   - bioconda
   - conda-forge
@@ -11,4 +11,3 @@ dependencies:
   - r-optparse
   - r-tidyverse
   - r-ggrepel
-  - r-ucscxenatools

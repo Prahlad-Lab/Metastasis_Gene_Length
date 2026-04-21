@@ -1,0 +1,13 @@
+name: meta_xena_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - r-ucscxenatools
+  - r-optparse
+  - r-tidyr
+  - r-dplyr
+  - r-readr
+  - r-stringr
+  - r-tibble
