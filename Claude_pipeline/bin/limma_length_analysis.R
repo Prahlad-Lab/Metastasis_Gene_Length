@@ -76,8 +76,7 @@ message("    primary: ", sum(pheno$tissue_type == "primary"),
 paired <- all(tapply(pheno$tissue_type, pheno$patient,
                      function(x) length(unique(x)) == 2))
 message(">>> Design: ",
-        if (paired) "paired (~patient + tissue_type)"
-        else        "unpaired (~tissue_type)")
+        if (paired) "paired (~patient + tissue_type)" else "unpaired (~tissue_type)")
 
 # =============================================================================
 # 2. Branch on data type
@@ -106,8 +105,7 @@ if (use_voom) {
 # =============================================================================
 # 3. Design and fit
 # =============================================================================
-design <- if (paired) model.matrix(~ patient + tissue_type, data = pheno)
-          else        model.matrix(~ tissue_type,           data = pheno)
+design <- if (paired) model.matrix(~ patient + tissue_type, data = pheno) else model.matrix(~ tissue_type, data = pheno)
 
 if (use_voom) {
     svg(file.path(opt$outdir, "voom_mean_variance.svg"),
