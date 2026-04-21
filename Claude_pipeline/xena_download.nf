@@ -1,8 +1,8 @@
 process XENA_DOWNLOAD {
     label 'process_low'
 
-    conda 'conda-forge::r-ucscxenatools conda-forge::r-tidyverse conda-forge::r-optparse'
     container '/vscratch/grp-vprahlad/Metastasis_Gene_Length/meta_xena.sif'
+    conda     null
 
     output:
     path 'expression.tsv.gz', emit: expression
