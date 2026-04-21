@@ -142,7 +142,41 @@ if (!is.na(opt$gene_lengths)) {
     message(">>> Using user-supplied lengths (n=", nrow(gene_len), ")")
 } else {
     message(">>> Using goseq::getlength(", opt$genome, ", ", opt$gene_id_type, ")")
-    len_vec <- getlength(res$gene_id, opt$genome, opt$gene_id_type)
+    len_vec <- tryCatch(
+        suppressWarnings(getlength(res$gene_id, opt$genome, opt$gene_id_type)),
+        error = function(e) {
+            message("    goseq::getlength failed: ", e$message)
+            NULL
+        }
+    )
+
+    if (is.null(len_vec) || all(is.na(len_vec))) {
+        message(">>> Falling back to biomaRt to retrieve gene lengths")
+        len_vec <- tryCatch({
+            if (!requireNamespace("biomaRt", quietly = TRUE))
+                stop("biomaRt not installed")
+            mart <- biomaRt::useMart("ensembl",
+                                     dataset = "hsapiens_gene_ensembl",
+                                     host    = "https://ensembl.org")
+            bm <- biomaRt::getBM(
+                attributes = c("hgnc_symbol", "transcript_length"),
+                filters    = "hgnc_symbol",
+                values     = res$gene_id,
+                mart       = mart
+            )
+            # Use the longest transcript length per gene
+            bm_agg  <- bm |>
+                group_by(hgnc_symbol) |>
+                summarise(length_bp = max(transcript_length, na.rm = TRUE),
+                          .groups = "drop")
+            len_map <- setNames(bm_agg$length_bp, bm_agg$hgnc_symbol)
+            len_map[res$gene_id]
+        }, error = function(e) {
+            message("    biomaRt fallback failed: ", e$message)
+            message("    Gene lengths unavailable; length-stratified analyses will be skipped.")
+            rep(NA_real_, nrow(res))
+        })
+    }
     gene_len <- tibble(gene_id = res$gene_id, length_bp = len_vec)
 }
 res <- res |> left_join(gene_len, by = "gene_id")
@@ -154,6 +188,12 @@ saveRDS(list(fit = fit, pheno = pheno, res = res, data_type = opt$data_type),
 # =============================================================================
 # 5. Length-stratified summaries + plots
 # =============================================================================
+lengths_available <- sum(!is.na(res$length_bp)) >= 10L
+
+if (!lengths_available) {
+    message(">>> Skipping length-stratified analysis: insufficient gene length data")
+} else {
+
 res_len <- res |>
     filter(!is.na(length_bp), length_bp > 0) |>
     mutate(
@@ -232,9 +272,15 @@ ggsave(file.path(opt$outdir, "volcano.svg"),
         labs(title = "Volcano plot", x = "log2 FC", y = "-log10 adj.P"),
     width = 7, height = 5)
 
+} # end lengths_available
+
 # =============================================================================
 # 6. goseq: length-bias-corrected GO/KEGG
 # =============================================================================
+if (!lengths_available) {
+    message(">>> Skipping goseq enrichment: insufficient gene length data")
+} else {
+
 message(">>> goseq enrichment")
 gene_vec <- as.integer(res$adj.P.Val < opt$fdr & abs(res$logFC) > opt$lfc)
 names(gene_vec) <- res$gene_id
@@ -278,5 +324,7 @@ if (!is.null(go_res)) {
                  title = "Length-corrected vs uncorrected GO-BP"),
         width = 6.5, height = 6)
 }
+
+} # end lengths_available (goseq)
 
 message(">>> Done.")
