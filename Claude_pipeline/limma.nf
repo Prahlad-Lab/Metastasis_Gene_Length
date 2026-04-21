@@ -1,8 +1,8 @@
 process LIMMA_LENGTH_ANALYSIS {
     label 'process_medium'
 
-    conda 'bioconda::bioconductor-limma=3.58.1 bioconda::bioconductor-edger=4.0.16 bioconda::bioconductor-goseq=1.54.0 conda-forge::r-optparse conda-forge::r-tidyverse conda-forge::r-ggrepel'
-    container '/vscratch/grp-vprahlad/Metastasis_Gene_Length/meta_limma.sif'
+    conda      'test_limma_env'
+    container  null
 
     input:
     path expression
