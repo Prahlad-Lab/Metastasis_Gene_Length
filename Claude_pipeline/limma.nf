@@ -13,9 +13,9 @@ process LIMMA_LENGTH_ANALYSIS {
     path phenotype
 
     output:
-    path 'results/*.tsv', emit: tables
-    path 'results/*.svg', emit: plots
-    path 'results/*.rds', emit: rds
+    path 'results/*.tsv',              emit: tables
+    path 'results/*.svg', optional: true, emit: plots
+    path 'results/*.rds',              emit: rds
 
     script:
     def lengths_arg = params.gene_lengths ? "--gene_lengths ${file(params.gene_lengths)}" : ''

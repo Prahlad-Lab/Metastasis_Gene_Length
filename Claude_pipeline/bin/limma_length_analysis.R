@@ -186,7 +186,45 @@ saveRDS(list(fit = fit, pheno = pheno, res = res, data_type = opt$data_type),
         file.path(opt$outdir, "limma_fit.rds"))
 
 # =============================================================================
-# 5. Length-stratified summaries + plots
+# 5a. Basic DE plots (always generated, no gene lengths required)
+# =============================================================================
+message(">>> Generating basic DE plots")
+theme_set(theme_bw(base_size = 11))
+
+res_de <- res |>
+    mutate(
+        sig       = adj.P.Val < opt$fdr,
+        direction = case_when(sig & logFC >  opt$lfc ~ "up",
+                              sig & logFC < -opt$lfc ~ "down",
+                              TRUE                   ~ "ns")
+    )
+
+ggsave(file.path(opt$outdir, "volcano.svg"),
+    ggplot(res_de, aes(logFC, -log10(adj.P.Val), colour = direction)) +
+        geom_point(size = 0.6, alpha = 0.5) +
+        geom_vline(xintercept = c(-opt$lfc, opt$lfc), linetype = 2) +
+        geom_hline(yintercept = -log10(opt$fdr),       linetype = 2) +
+        scale_colour_manual(values = c(up = "#d73027", down = "#4575b4", ns = "grey70")) +
+        labs(title = "Volcano plot", x = "log2 FC (metastasis vs primary)",
+             y = "-log10 adj.P",
+             subtitle = sprintf("Up: %d  Down: %d  (FDR<%.2f, |logFC|>%.1f)",
+                                sum(res_de$direction == "up"),
+                                sum(res_de$direction == "down"),
+                                opt$fdr, opt$lfc)),
+    width = 7, height = 5)
+
+ggsave(file.path(opt$outdir, "ma_plot.svg"),
+    ggplot(res_de, aes(AveExpr, logFC, colour = direction)) +
+        geom_point(size = 0.5, alpha = 0.4) +
+        geom_hline(yintercept = c(-opt$lfc, 0, opt$lfc),
+                   linetype = c(2, 1, 2), colour = c("grey40", "black", "grey40")) +
+        scale_colour_manual(values = c(up = "#d73027", down = "#4575b4", ns = "grey70")) +
+        labs(title = "MA plot", x = "Average expression (log2)",
+             y = "log2 FC (metastasis vs primary)"),
+    width = 7, height = 5)
+
+# =============================================================================
+# 5b. Length-stratified summaries + plots
 # =============================================================================
 lengths_available <- sum(!is.na(res$length_bp)) >= 10L
 
@@ -225,8 +263,6 @@ decile_summary <- res_len |>
               .groups       = "drop")
 write_tsv(decile_summary, file.path(opt$outdir, "length_decile_summary.tsv"))
 
-theme_set(theme_bw(base_size = 11))
-
 ggsave(file.path(opt$outdir, "length_vs_logfc.svg"),
     ggplot(res_len, aes(log10_len, logFC)) +
         geom_hex(bins = 60) +
@@ -262,15 +298,6 @@ ggsave(file.path(opt$outdir, "length_density_by_direction.svg"),
         labs(x = "log10 gene length (bp)", y = "density",
              title = "Gene length distribution by DE direction"),
     width = 7, height = 4)
-
-ggsave(file.path(opt$outdir, "volcano.svg"),
-    ggplot(res_len, aes(logFC, -log10(adj.P.Val), colour = direction)) +
-        geom_point(size = 0.6, alpha = 0.5) +
-        geom_vline(xintercept = c(-opt$lfc, opt$lfc), linetype = 2) +
-        geom_hline(yintercept = -log10(opt$fdr),       linetype = 2) +
-        scale_colour_manual(values = c(up = "#d73027", down = "#4575b4", ns = "grey70")) +
-        labs(title = "Volcano plot", x = "log2 FC", y = "-log10 adj.P"),
-    width = 7, height = 5)
 
 } # end lengths_available
 
