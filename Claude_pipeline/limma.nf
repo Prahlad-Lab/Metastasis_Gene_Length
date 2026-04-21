@@ -1,7 +1,11 @@
 process LIMMA_LENGTH_ANALYSIS {
     label 'process_medium'
 
-    conda      'test_limma_env'
+    // params.limma_env_path is the full path to the pre-built conda environment
+    // (supplied at runtime by submit_Metastasis_pipeline.sh via --limma_env_path).
+    // Nextflow treats a string containing '/' as an existing environment path and
+    // activates it directly without attempting to create a new environment.
+    conda      params.limma_env_path
     container  null
 
     input:
