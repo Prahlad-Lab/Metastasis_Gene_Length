@@ -35,7 +35,7 @@ mkdir -p "$WORK_DIR"
 echo "Starting Nextflow Metastasis Pipeline..."
 
 # Tell Nextflow to run main.nf, use Slurm to submit sub-tasks, and resume if interrupted
-nextflow run main.nf -profile singularity \
+nextflow run main.nf -profile mixed \
 	-w "$WORK_DIR" \
 	-with-report logs/report_STAR_${SLURM_JOB_ID}.html \
 	-with-trace logs/trace_STAR_${SLURM_JOB_ID}.txt \
