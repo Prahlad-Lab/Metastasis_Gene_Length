@@ -22,7 +22,7 @@ mkdir -p logs
 # Activate your Conda/Mamba environment that contains Nextflow and your Python packages
 # (Make sure to initialize your shell first if running in a batch script)
 source $(conda info --base)/etc/profile.d/conda.sh
-conda activate nextflow.25
+conda activate test_limma_env
 
 echo "Nextflow Manager script completed."
 WORK_DIR="/vscratch/grp-vprahlad/Metastasis_Gene_Length/work"
