@@ -1,0 +1,111 @@
+Nextflow Manager script completed.
+Starting Nextflow Metastasis Pipeline...
+
+ N E X T F L O W   ~  version 25.10.4
+
+Launching `main.nf` [hungry_dijkstra] DSL2 - revision: 506b5e1349
+
+[-        ] XENA_DOWNLOAD         | 0 of 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[4b/243375] XENA_DOWNLOAD         | 0 of 1
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (1)
+[4b/243375] XENA_DOWNLOAD         | 1 of 1 ✔
+[-        ] LIMMA_LENGTH_ANALYSIS -
+
+executor >  local (2)
+[4b/243375] XENA_DOWNLOAD         | 1 of 1 ✔
+[6e/f7d0d5] LIMMA_LENGTH_ANALYSIS | 0 of 1
+
+executor >  local (2)
+[4b/243375] XENA_DOWNLOAD         | 1 of 1 ✔
+[6e/f7d0d5] LIMMA_LENGTH_ANALYSIS | 0 of 1
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Process `LIMMA_LENGTH_ANALYSIS` terminated with an error exit status (1)
+
+
+Command executed:
+
+  limma_length_analysis.R \
+      --expression    expression.tsv.gz \
+      --phenotype     phenotype.tsv \
+      --data_type     log2_norm \
+      --genome        hg38 \
+      --gene_id_type  geneSymbol \
+      --fdr           0.05 \
+      --lfc           1.0 \
+       \
+      --outdir        results
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  >>> Loading expression: expression.tsv.gz
+      20530 genes x 473 samples
+      primary: 104,  metastasis: 369
+  >>> Design: unpaired (~tissue_type)
+  Error: unexpected 'else' in "          else"
+  Execution halted
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6e/f7d0d5df8d6341d875896e594484d7
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+
+ -- Check '.nextflow.log' file for details
+
+executor >  local (2)
+[4b/243375] XENA_DOWNLOAD         | 1 of 1 ✔
+[6e/f7d0d5] LIMMA_LENGTH_ANALYSIS | 0 of 1 ✘
+Execution cancelled -- Finishing pending tasks before exit
+Done. Results: results
+ERROR ~ Error executing process > 'LIMMA_LENGTH_ANALYSIS'
+
+Caused by:
+  Process `LIMMA_LENGTH_ANALYSIS` terminated with an error exit status (1)
+
+
+Command executed:
+
+  limma_length_analysis.R \
+      --expression    expression.tsv.gz \
+      --phenotype     phenotype.tsv \
+      --data_type     log2_norm \
+      --genome        hg38 \
+      --gene_id_type  geneSymbol \
+      --fdr           0.05 \
+      --lfc           1.0 \
+       \
+      --outdir        results
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  >>> Loading expression: expression.tsv.gz
+      20530 genes x 473 samples
+      primary: 104,  metastasis: 369
+  >>> Design: unpaired (~tissue_type)
+  Error: unexpected 'else' in "          else"
+  Execution halted
+
+Work dir:
+  /vscratch/grp-vprahlad/Metastasis_Gene_Length/work/6e/f7d0d5df8d6341d875896e594484d7
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+
+ -- Check '.nextflow.log' file for details
+
+Nextflow pipeline completed.
