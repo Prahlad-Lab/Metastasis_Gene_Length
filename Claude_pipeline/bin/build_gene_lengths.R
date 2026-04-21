@@ -103,15 +103,32 @@ local_ok <- tryCatch({
 if (local_ok) quit(status = 0)
 
 # ---------------------------------------------------------------------------
-# biomaRt fallback
+# biomaRt fallback (tries multiple Ensembl mirrors)
 # ---------------------------------------------------------------------------
-tryCatch({
+biomart_ok <- tryCatch({
     if (!requireNamespace("biomaRt", quietly = TRUE))
         stop("biomaRt not installed")
 
-    mart <- biomaRt::useMart("ensembl",
-                             dataset = "hsapiens_gene_ensembl",
-                             host    = "https://ensembl.org")
+    # useEnsembl() is preferred over useMart() and supports mirror selection
+    mart <- NULL
+    mirrors <- c("useast", "uswest", "asia", "www")
+    for (mirror in mirrors) {
+        mart <- tryCatch(
+            biomaRt::useEnsembl("ensembl",
+                                dataset = "hsapiens_gene_ensembl",
+                                mirror  = mirror),
+            error = function(e) {
+                message("    biomaRt mirror '", mirror, "' failed: ", e$message)
+                NULL
+            }
+        )
+        if (!is.null(mart)) {
+            message("    biomaRt connected via mirror: ", mirror)
+            break
+        }
+    }
+    if (is.null(mart))
+        stop("Could not connect to any Ensembl mirror")
 
     attrs <- if (opt$gene_id_type == "geneSymbol") {
         c("hgnc_symbol", "transcript_length")
@@ -130,6 +147,38 @@ tryCatch({
     write.table(out, opt$outfile,
                 sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
     message(">>> Wrote ", nrow(out), " entries to ", opt$outfile, " (via biomaRt)")
+    TRUE
+}, error = function(e) {
+    message("    biomaRt approach failed: ", e$message)
+    message(">>> Falling back to geneLenDataBase")
+    FALSE
+})
+
+if (biomart_ok) quit(status = 0)
+
+# ---------------------------------------------------------------------------
+# geneLenDataBase fallback (local, no network required)
+# ---------------------------------------------------------------------------
+tryCatch({
+    if (!requireNamespace("geneLenDataBase", quietly = TRUE))
+        stop("geneLenDataBase not installed")
+
+    data_name <- paste0("hg38.", opt$gene_id_type, ".LENGTH")
+    tryCatch(
+        utils::data(list = data_name, package = "geneLenDataBase"),
+        error = function(e) stop("Dataset '", data_name, "' not found in geneLenDataBase")
+    )
+    len_data <- get(data_name)
+
+    out <- data.frame(gene_id   = names(len_data),
+                      length_bp = as.integer(len_data),
+                      stringsAsFactors = FALSE)
+    out <- out[!is.na(out$length_bp) & out$length_bp > 0, ]
+
+    write.table(out, opt$outfile,
+                sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+    message(">>> Wrote ", nrow(out), " entries to ", opt$outfile,
+            " (via geneLenDataBase)")
 }, error = function(e) {
     stop("All gene length retrieval methods failed: ", e$message)
 })
