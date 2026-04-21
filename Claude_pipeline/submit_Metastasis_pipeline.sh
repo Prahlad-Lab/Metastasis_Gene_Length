@@ -24,6 +24,11 @@ mkdir -p logs
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate test_limma_env
 
+# Capture the full path of the activated environment so Nextflow can reuse it
+# without trying to create a new one (a path containing '/' is treated as an
+# existing environment directory by the Nextflow conda directive).
+LIMMA_ENV_PATH="$CONDA_PREFIX"
+
 echo "Nextflow Manager script completed."
 WORK_DIR="/vscratch/grp-vprahlad/Metastasis_Gene_Length/work"
 mkdir -p "$WORK_DIR"
@@ -37,6 +42,7 @@ echo "Starting Nextflow Metastasis Pipeline..."
 # Tell Nextflow to run main.nf, use Slurm to submit sub-tasks, and resume if interrupted
 nextflow run main.nf -profile mixed \
 	-w "$WORK_DIR" \
+	--limma_env_path "$LIMMA_ENV_PATH" \
 	-with-report logs/report_STAR_${SLURM_JOB_ID}.html \
 	-with-trace logs/trace_STAR_${SLURM_JOB_ID}.txt \
 	-with-timeline logs/timeline_STAR_${SLURM_JOB_ID}.html 
