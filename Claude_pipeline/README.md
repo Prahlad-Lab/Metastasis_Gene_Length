@@ -24,6 +24,47 @@ nextflow run main.nf -profile conda \
     --data_type log2_norm
 ```
 
+## Running on HPC with Singularity (SLURM)
+
+The pipeline ships with two separate Singularity images — one per process:
+
+| Image | Used by process |
+|---|---|
+| `/vscratch/grp-vprahlad/Metastasis_Gene_Length/meta_xena.sif` | `XENA_DOWNLOAD` |
+| `/vscratch/grp-vprahlad/Metastasis_Gene_Length/meta_limma.sif` | `LIMMA_LENGTH_ANALYSIS` |
+
+### Submitting with the provided SLURM script
+
+`submit_Metastasis_pipeline.sh` is a SLURM batch script that activates the
+`nextflow.25` conda environment and launches the pipeline under the combined
+`slurm,singularity` profile (SLURM job scheduler + Singularity containers).
+
+```bash
+# From the Claude_pipeline/ directory
+sbatch submit_Metastasis_pipeline.sh
+```
+
+To override the preset or any other parameter, edit the `nextflow run` call at
+the bottom of the script, or pass extra `--params` directly:
+
+```bash
+# Example: run with the pancan_toil preset, restricted to melanoma
+sbatch --export=ALL submit_Metastasis_pipeline.sh \
+    --preset pancan_toil \
+    --cancer_types 'Skin Cutaneous Melanoma'
+```
+
+> **Note:** `XENA_DOWNLOAD` needs outbound HTTPS to the Xena hub. Ensure the
+> compute nodes have internet access, or pre-download the data and adapt the
+> pipeline to read local files.
+
+### Running interactively (without SLURM)
+
+```bash
+# Singularity only, runs locally
+nextflow run main.nf -profile singularity
+```
+
 ## Presets
 
 | preset         | source                      | data type     | notes                                       |
@@ -85,9 +126,6 @@ results/
 
 ## Notes / caveats
 
-- **Network**: `XENA_DOWNLOAD` needs outbound HTTPS to the relevant
-  Xena hub. On HPCs without internet, pre-download and point the
-  pipeline at local files (I can add a flag for that).
 - **Gene ID types**: SKCM HiSeqV2 and Toil-Hugo use HGNC symbols, so
   use `--gene_id_type geneSymbol`. Ensembl-keyed datasets need
   `--gene_id_type ensGene`. Version suffixes (`.N`) are stripped
