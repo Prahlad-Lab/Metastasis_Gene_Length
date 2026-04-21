@@ -1,0 +1,135 @@
+#!/usr/bin/env Rscript
+# =============================================================================
+# build_gene_lengths.R
+#
+# Pre-build a gene_id <TAB> length_bp TSV that can be supplied to the pipeline
+# via --gene_lengths, avoiding runtime goseq/biomaRt network failures.
+#
+# Usage (run once, outside Nextflow):
+#
+#   Rscript build_gene_lengths.R \
+#       --gene_id_type geneSymbol \
+#       --outfile gene_lengths_hg38_symbol.tsv
+#
+#   Rscript build_gene_lengths.R \
+#       --gene_id_type ensGene \
+#       --outfile gene_lengths_hg38_ensg.tsv
+#
+# Then run the pipeline with:
+#   nextflow run main.nf --gene_lengths /path/to/gene_lengths_hg38_symbol.tsv ...
+#
+# Strategy:
+#   Uses TxDb.Hsapiens.UCSC.hg38.knownGene + org.Hs.eg.db (Bioconductor,
+#   fully local — no network required) to compute the longest transcript length
+#   per gene. Falls back to biomaRt if TxDb packages are not installed.
+# =============================================================================
+
+suppressPackageStartupMessages(library(optparse))
+
+option_list <- list(
+    make_option("--gene_id_type", type = "character", default = "geneSymbol",
+                help = "Gene ID type: geneSymbol (default) or ensGene"),
+    make_option("--outfile", type = "character", default = "gene_lengths.tsv",
+                help = "Output TSV path (gene_id TAB length_bp)")
+)
+opt <- parse_args(OptionParser(option_list = option_list))
+
+message(">>> Building gene lengths for hg38 / ", opt$gene_id_type)
+
+# ---------------------------------------------------------------------------
+# Try local TxDb approach first (fastest, no network)
+# ---------------------------------------------------------------------------
+local_ok <- tryCatch({
+    if (!requireNamespace("TxDb.Hsapiens.UCSC.hg38.knownGene", quietly = TRUE))
+        stop("TxDb.Hsapiens.UCSC.hg38.knownGene not installed")
+    if (!requireNamespace("GenomicFeatures", quietly = TRUE))
+        stop("GenomicFeatures not installed")
+
+    txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene
+    tx_by_gene <- GenomicFeatures::transcriptsBy(txdb, by = "gene")
+    # Compute transcript widths and take max per Entrez gene
+    tx_widths <- GenomicFeatures::transcriptLengths(txdb, with.cds_len = FALSE)
+    len_entrez <- tapply(tx_widths$tx_len, tx_widths$gene_id, max, na.rm = TRUE)
+
+    if (opt$gene_id_type == "geneSymbol") {
+        if (!requireNamespace("org.Hs.eg.db", quietly = TRUE))
+            stop("org.Hs.eg.db not installed")
+        eg2sym <- AnnotationDbi::select(
+            org.Hs.eg.db::org.Hs.eg.db,
+            keys    = names(len_entrez),
+            columns = "SYMBOL",
+            keytype = "ENTREZID"
+        )
+        eg2sym <- eg2sym[!is.na(eg2sym$SYMBOL) & !duplicated(eg2sym$ENTREZID), ]
+        matched <- len_entrez[eg2sym$ENTREZID]
+        out <- data.frame(gene_id   = eg2sym$SYMBOL,
+                          length_bp = as.integer(matched),
+                          stringsAsFactors = FALSE)
+        out <- out[!is.na(out$length_bp), ]
+        # Collapse duplicate symbols: keep max length
+        out <- out[order(-out$length_bp), ]
+        out <- out[!duplicated(out$gene_id), ]
+    } else {
+        # ensGene: map Entrez -> Ensembl
+        if (!requireNamespace("org.Hs.eg.db", quietly = TRUE))
+            stop("org.Hs.eg.db not installed")
+        eg2ens <- AnnotationDbi::select(
+            org.Hs.eg.db::org.Hs.eg.db,
+            keys    = names(len_entrez),
+            columns = "ENSEMBL",
+            keytype = "ENTREZID"
+        )
+        eg2ens <- eg2ens[!is.na(eg2ens$ENSEMBL) & !duplicated(eg2ens$ENTREZID), ]
+        matched <- len_entrez[eg2ens$ENTREZID]
+        out <- data.frame(gene_id   = eg2ens$ENSEMBL,
+                          length_bp = as.integer(matched),
+                          stringsAsFactors = FALSE)
+        out <- out[!is.na(out$length_bp), ]
+        out <- out[order(-out$length_bp), ]
+        out <- out[!duplicated(out$gene_id), ]
+    }
+
+    write.table(out, opt$outfile,
+                sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+    message(">>> Wrote ", nrow(out), " entries to ", opt$outfile,
+            " (via TxDb.Hsapiens.UCSC.hg38.knownGene)")
+    TRUE
+}, error = function(e) {
+    message("    TxDb approach failed: ", e$message)
+    message(">>> Falling back to biomaRt")
+    FALSE
+})
+
+if (local_ok) quit(status = 0)
+
+# ---------------------------------------------------------------------------
+# biomaRt fallback
+# ---------------------------------------------------------------------------
+tryCatch({
+    if (!requireNamespace("biomaRt", quietly = TRUE))
+        stop("biomaRt not installed")
+
+    mart <- biomaRt::useMart("ensembl",
+                             dataset = "hsapiens_gene_ensembl",
+                             host    = "https://ensembl.org")
+
+    attrs <- if (opt$gene_id_type == "geneSymbol") {
+        c("hgnc_symbol", "transcript_length")
+    } else {
+        c("ensembl_gene_id", "transcript_length")
+    }
+
+    bm <- biomaRt::getBM(attributes = attrs, mart = mart)
+    bm <- bm[bm[[1]] != "" & !is.na(bm[[1]]), ]
+
+    agg <- tapply(bm[[2]], bm[[1]], max, na.rm = TRUE)
+    out <- data.frame(gene_id   = names(agg),
+                      length_bp = as.integer(agg),
+                      stringsAsFactors = FALSE)
+
+    write.table(out, opt$outfile,
+                sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+    message(">>> Wrote ", nrow(out), " entries to ", opt$outfile, " (via biomaRt)")
+}, error = function(e) {
+    stop("All gene length retrieval methods failed: ", e$message)
+})
