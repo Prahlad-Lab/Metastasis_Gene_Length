@@ -1,0 +1,8 @@
+Run diagnostics
+design_mode: repeated_measures_blocked
+samples: 473 (primary=104, metastasis=369)
+patients: 470 (repeated=3, complete_pairs=2)
+duplicate_correlation_consensus: 0.548071
+genes: input=20530, after_filter=16424, tested=16424
+lengths: nonmissing=13915 / 16424 (84.72%)
+thresholds: FDR<0.05, treat_lfc=1
