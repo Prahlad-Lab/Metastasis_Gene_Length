@@ -1,0 +1,9 @@
+metric	value
+n_samples	461
+n_events	222
+HR	0.6516635842984057
+HR_lo	0.5693027246479089
+HR_hi	0.745939565568185
+p_value	5.239398609799072e-10
+score_genes_long_up	44
+score_genes_short_down	86
