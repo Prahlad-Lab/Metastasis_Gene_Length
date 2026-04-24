@@ -118,32 +118,61 @@ if (opt$data_type == "counts_raw") {
 
 # 4. Fetch Gene Lengths (Transcript, CDS, and Intron)
 message("Fetching Transcript and CDS lengths from Ensembl...")
-fetch_from_mirror <- function(host_url) {
+
+gene_data <- NULL
+
+# Helper to run the query safely
+run_bm_query <- function(mart_obj) {
   tryCatch({
-    message(paste("Attempting connection to mirror:", host_url))
-    ensembl <- useEnsembl(biomart = "ensembl", dataset = opt$genome, mirror = host_url)
-    gene_data <- getBM(
+    getBM(
       attributes = c(opt$gene_id_type, 'transcript_length', 'cds_length', 'transcript_biotype'),
-      mart = ensembl
+      mart = mart_obj
     )
-    return(gene_data)
   }, error = function(e) { return(NULL) })
 }
 
-gene_data <- fetch_from_mirror("useast")
-if (is.null(gene_data)) gene_data <- fetch_from_mirror("uswest")
+# Attempt 1: US East Mirror
+message("  -> Attempting US East Mirror...")
+try({
+  mart <- useEnsembl(biomart = "ensembl", dataset = opt$genome, mirror = "useast")
+  gene_data <- run_bm_query(mart)
+}, silent = TRUE)
+
+# Attempt 2: US West Mirror
 if (is.null(gene_data)) {
-  tryCatch({
-    message("Attempting default Ensembl connection...")
-    ensembl <- useMart("ensembl", dataset = opt$genome)
-    gene_data <- getBM(
-      attributes = c(opt$gene_id_type, 'transcript_length', 'cds_length', 'transcript_biotype'),
-      mart = ensembl
-    )
-  }, error = function(e) { stop("Ensembl connection completely failed.") })
+  message("  -> Attempting US West Mirror...")
+  try({
+    mart <- useEnsembl(biomart = "ensembl", dataset = opt$genome, mirror = "uswest")
+    gene_data <- run_bm_query(mart)
+  }, silent = TRUE)
 }
 
-message("Processing length data (Calculating Intron Burden)...")
+# Attempt 3: Default Live Server
+if (is.null(gene_data)) {
+  message("  -> Attempting Default Live Ensembl Server...")
+  try({
+    mart <- useMart("ensembl", dataset = opt$genome)
+    gene_data <- run_bm_query(mart)
+  }, silent = TRUE)
+}
+
+# Attempt 4: The "Failsafe" Archive (Ensembl Release 109 - Feb 2023)
+if (is.null(gene_data)) {
+  message("  -> Live servers down. Attempting Stable Ensembl Archive (Feb 2023)...")
+  try({
+    mart <- useMart(host="https://feb2023.archive.ensembl.org", 
+                    biomart="ENSEMBL_MART_ENSEMBL", 
+                    dataset=opt$genome)
+    gene_data <- run_bm_query(mart)
+  }, silent = TRUE)
+}
+
+# Final Check
+if (is.null(gene_data)) {
+  stop("CRITICAL ERROR: All Ensembl servers (Mirrors, Main, and Archives) are currently unreachable. Ensembl is likely experiencing a severe global outage. Please try running the script again in an hour.")
+}
+
+message("Successfully retrieved length data! Processing Intron Burden...")
 gene_lengths <- gene_data |>
   filter(transcript_biotype == "protein_coding") |>
   filter(!!sym(opt$gene_id_type) != "") |>
